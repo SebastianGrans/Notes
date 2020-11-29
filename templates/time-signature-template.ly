@@ -3,54 +3,40 @@
 \version "2.20.0"
 \paper {
     indent=0\mm
-    paper-width = 50\mm
+    paper-width = 65\mm % Minimum width to fit c-flat key signature
     paper-height = 45\mm
+    right-margin = 0 % Paper margin sometimes limits staff length.
+    left-margin = 0
     oddFooterMarkup=##f
     oddHeaderMarkup=##f
     bookTitleMarkup = ##f
     scoreTitleMarkup = ##f
+    top-system-spacing = #'((space . 4) (padding . 4) (stretchability . 1)) 
 }
 
-\score {
-  {
-    \key f \major
-    \repeat unfold 1 { s1 * 5 \break }
-  }
-  \layout {
-    #(layout-set-staff-size 50)
-    indent = 0\in
-    \context {
-      \Staff
-      \remove "Time_signature_engraver"
-      \remove "Bar_engraver"
+\markup { % For centering
+  \fill-line { % For centering 
+    \score {
+      {
+        \clef bass
+        \key <KEY_PLACEHOLDER>
+        \repeat unfold 1 { s1 * <WIDTH_PLACEHOLDER> \break }
+        % bes'
+      }
+      \layout {
+        #(layout-set-staff-size 50)
+        indent = 0\in
+        \context {
+          \Staff
+          \remove "Time_signature_engraver"
+          \remove "Bar_engraver"
+          \override Clef.space-alist.key-signature = #'(minimum-space . 9)
+        }
+        \context {
+          \Score
+          \remove "Bar_number_engraver"
+        }
+      }
     }
-    \context {
-      \Score
-      \remove "Bar_number_engraver"
-    }
   }
 }
-
-% uncomment these lines for "letter" size
-%{
-\paper {
-  #(set-paper-size "letter")
-  ragged-last-bottom = ##f
-  line-width = 7.5\in
-  left-margin = 0.5\in
-  bottom-margin = 0.25\in
-  top-margin = 0.25\in
-}
-%}
-
-% uncomment these lines for "A4" size
-%{
-\paper {
-  #(set-paper-size "a4")
-  ragged-last-bottom = ##f
-  line-width = 180
-  left-margin = 15
-  bottom-margin = 10
-  top-margin = 10
-}
-%}
