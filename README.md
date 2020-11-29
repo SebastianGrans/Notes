@@ -1,17 +1,19 @@
 # Lilypond flash cards with LaTeX
 
 <img src="images/out.png" style="width: 400px">
-Front and back of one flashcard. 
-
-`make-note-sheet.py` produces a file like [this](pdfs/flashcards-treble.pdf) which can be printed two-sided.
+Front- and back-side of one flashcard. 
 
 ## Precompiled files
 
-[Treble Clef/G-Clef notes flashcards](pdfs/flashcards-treble.pdf)
+[Treble Clef/G-Clef notes flashcards](pdfs/flashcards-treble.pdf)  
 [Bass Clef/F-Clef notes flashcards](pdfs/flashcards-bass.pdf)
 
-[Treble Clef/G-Clef key signature flashcards](pdfs/key-signature-treble.pdf)
+[Treble Clef/G-Clef key signature flashcards](pdfs/key-signature-treble.pdf)  
 [Bass Clef/F-Clef key signature flashcards](pdf/../pdfs/key-signature-bass.pdf)
+
+## Make your own?
+Read the section below and have a look into `make-note-sheet.py`, `make-time-signature-sheet.py`.
+You will need to have Python, LaTeX, and Lilypond installed. 
 
 ## How does it work?
 We start with a template [Lilypond](http://lilypond.org) (LaTeX for music engraving). It defines how we wish the staff to look.
