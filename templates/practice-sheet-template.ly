@@ -10,33 +10,9 @@
     left-margin = #20 
 }
 
-upper =  {
-    \clef treble
-    \time 4/4
-
-    <TREBLE_NOTES> % Insert 120 quarter notes here to fill a page.
-}
-
-upper_lyrics = \lyricmode {
-    \override Lyrics.LyricText.font-shape = #'smallcaps
-    \override Lyrics.LyricText.font-size = #-4
-    <TREBLE_NOTES_STR>
-}
-
-lower =  {
-    \clef bass
-    \time 4/4
-
-
-    <BASS_NOTES> % Insert 120 quarter notes here to fill a page.
-}
-
-lower_lyrics = \lyricmode {
-    \override Lyrics.LyricText.font-shape = #'smallcaps
-    \override Lyrics.LyricText.font-size = #-4
-    <BASS_NOTES_STR>
-}
-
+%%
+% No heads sheet.
+% 
 
 \new Score \with 
 {
@@ -50,17 +26,130 @@ lower_lyrics = \lyricmode {
     }
         <<
             \new Staff = upper {
-                \new Voice = "upper" \upper
+                \new Voice = "upper" {
+                    \clef treble
+                    \time 4/4
+                    \repeat unfold 40 { \hideNotes a c'''}
+                }
             } 
             \new Lyrics \lyricsto "upper" {
-                \upper_lyrics
+                \lyricmode {
+                    \override Lyrics.LyricText.font-shape = #'smallcaps
+                    \override Lyrics.LyricText.font-size = #-4
+                    <TREBLE_NOTES_STR>
+                }
             }
             \new Staff = lower 
             {
-                \new Voice = "lower" \lower
+                \new Voice = "lower" {
+                    \clef bass
+                    \time 4/4
+                    \repeat unfold 40 { \hideNotes c, e' }
+                }
             } 
             \new Lyrics \lyricsto "lower" {
-                \lower_lyrics
+                \lyricmode {
+                    \override Lyrics.LyricText.font-shape = #'smallcaps
+                    \override Lyrics.LyricText.font-size = #-4
+                    <BASS_NOTES_STR>
+                }
+            }
+            
+        >>
+}
+
+%% 
+% No names sheet
+% 
+\new Score \with 
+{
+    \remove Bar_number_engraver
+}
+{
+
+    \new PianoStaff \with 
+    { 
+        \omit TimeSignature 
+    }
+        <<
+            \new Staff = upper {
+                \new Voice = "upper" {
+                    \clef treble
+                    \time 4/4
+                    <TREBLE_NOTES>
+                }
+            } 
+            \new Lyrics \lyricsto "upper" {
+                \lyricmode {
+                    \override Lyrics.LyricText.font-shape = #'smallcaps
+                    \override Lyrics.LyricText.font-size = #-4
+                    % Hack to make them all the staff groups equally high of content.
+                    \repeat unfold 40 { \markup{ \with-color #(x11-color 'white) "A" \sub{ \with-color #(x11-color 'white) 2}}}
+                }
+            }
+            \new Staff = lower 
+            {
+                \new Voice = "lower" {
+                    \clef bass
+                    \time 4/4
+                    <BASS_NOTES>
+                }
+            } 
+            \new Lyrics \lyricsto "lower" {
+                \lyricmode {
+                    \override Lyrics.LyricText.font-shape = #'smallcaps
+                    \override Lyrics.LyricText.font-size = #-4
+                    \repeat unfold 40 { \markup{ \with-color #(x11-color 'white) "A" \sub{ \with-color #(x11-color 'white) 2}}}
+                }
+            }
+            
+        >>
+}
+
+
+%%
+% Answer sheet
+%
+
+\new Score \with 
+{
+    \remove Bar_number_engraver
+}
+{
+
+    \new PianoStaff \with 
+    { 
+        \omit TimeSignature 
+    }
+        <<
+            \new Staff = upper {
+                \new Voice = "upper" {
+                    \clef treble
+                    \time 4/4
+                    <TREBLE_NOTES>
+                }
+            } 
+            \new Lyrics \lyricsto "upper" {
+                \lyricmode {
+                    \override Lyrics.LyricText.font-shape = #'smallcaps
+                    \override Lyrics.LyricText.font-size = #-4
+                    <TREBLE_NOTES_STR>
+                }
+            }
+            \new Staff = lower 
+            {
+                \new Voice = "lower" {
+                    \clef bass
+                    \time 4/4
+                    <BASS_NOTES>
+                }
+            } 
+            \new Lyrics \lyricsto "lower" {
+                \lyricmode {
+                    \override Lyrics.LyricText.font-shape = #'smallcaps
+                    \override Lyrics.LyricText.font-size = #-4
+                    <BASS_NOTES_STR>
+                }
             }
             
         >>

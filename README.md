@@ -1,12 +1,16 @@
 # Lilypond flash cards with LaTeX
 
-<img src="images/out.png" style="width: 400px">
+<img src="images/out.png" style="width: 400px"> 
+
 Front- and back-side of one flashcard. 
 
 ## Precompiled files
 
 [Treble Clef/G-Clef notes flashcards](pdfs/flashcards-treble.pdf)  
 [Bass Clef/F-Clef notes flashcards](pdfs/flashcards-bass.pdf)
+
+[Note practice sheets](pdfs/flashcards-treble.pdf)  
+**Note:** You can generate new ones with random notes by running `python make-practice-sheet.py`.
 
 [Treble Clef/G-Clef key signature flashcards](pdfs/key-signature-treble.pdf)  
 [Bass Clef/F-Clef key signature flashcards](pdf/../pdfs/key-signature-bass.pdf)
@@ -41,6 +45,21 @@ So for each PDF we generated, we insert a statement like this:
     \includegraphics[width=.20\\linewidth]{a-ans.pdf}
 }
 ```
+
+
+## Example 
+Here are some images taken from the pre-compiled sheets.
+
+
+<img src="images/key-sign.png" style="width: 400px">  
+
+Front- and back-side of one key signature flashcard. 
+
+
+<img src="images/practice.png" style="width: 400px">   
+
+Image from three paged practice sheets.
+
 
 
 ## For future reference
