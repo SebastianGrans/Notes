@@ -84,7 +84,7 @@
                     \override Lyrics.LyricText.font-shape = #'smallcaps
                     \override Lyrics.LyricText.font-size = #-4
                     % Hack to make them all the staff groups equally high of content.
-                    \repeat unfold 40 { \markup{ \with-color #(x11-color 'white) "A" \sub{ \with-color #(x11-color 'white) 2}}}
+                    \repeat unfold 80 { \markup{ \with-color #(x11-color 'white) "A" \sub{ \with-color #(x11-color 'white) 2}}}
                 }
             }
             \new Staff = lower 
@@ -99,7 +99,7 @@
                 \lyricmode {
                     \override Lyrics.LyricText.font-shape = #'smallcaps
                     \override Lyrics.LyricText.font-size = #-4
-                    \repeat unfold 40 { \markup{ \with-color #(x11-color 'white) "A" \sub{ \with-color #(x11-color 'white) 2}}}
+                    \repeat unfold 80 { \markup{ \with-color #(x11-color 'white) "A" \sub{ \with-color #(x11-color 'white) 2}}}
                 }
             }
             
