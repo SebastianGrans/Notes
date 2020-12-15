@@ -1,4 +1,4 @@
-output/
+tmp_output/
 __pycache__
 .vscode
-tmp2/
+random/

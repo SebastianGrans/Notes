@@ -2,15 +2,31 @@
 import os
 import subprocess
 
+## Settings
+# Treble or bass clef
+TREBLE = True
+# If this is set to true, you flip the card up or down (⇅) to see the answer. 
+# This felt more natural to me.
+FLIP_UP = True
+
+
+## Only edit settings below if you now what you're doing, 
+# or if you wanna play :) 
+
 latex_template    = 'templates/flashcards-template.tex'
 lilypond_template = 'templates/time-signature-template.ly'
 
-folder = 'output/'
-lilypond_output = folder + '{}.ly'
-latex_output = folder + 'flashcards.tex'
+tmp_folder = 'tmp_output/'
+lilypond_output = tmp_folder + '{}.ly'
+latex_output = tmp_folder + 'flashcards.tex'
 
-if not os.path.exists('output'):
-    os.mkdir('output')
+pdf_output = ('treble' if TREBLE else 'bass') \
+            + '-key-sign-sheet-' \
+            + ('flipud' if FLIP_UP else 'fliplr') \
+            + '.pdf'
+
+if not os.path.exists(tmp_folder):
+    os.mkdir(tmp_folder)
 
 ## Key signatures 
 
@@ -72,15 +88,19 @@ width = {
 f = open(lilypond_template, 'r')
 template_string = f.read()
 f.close()
+clef = ('treble' if TREBLE else 'bass')
 
 for el in l_flat + l_sharp:
     major_key, minor_key, n_of_accidentals = el
     w = width[n_of_accidentals]
 
     key_string = major_key + ' \\major'
+    
+    template_string = template_string.replace('<CLEF_PLACEHOLDER>', clef)
     major_string = template_string.replace('<KEY_PLACEHOLDER>', key_string)
     major_string = major_string.replace('<WIDTH_PLACEHOLDER>', str(w))
     
+
     # key_string = minor_key + ' \\minor'
     # minor_string = template_string.replace('<KEY_PLACEHOLDER>', key_string)
     # minor_string = minor_string.replace('<WIDTH_PLACEHOLDER>', str(w))
@@ -92,7 +112,7 @@ for el in l_flat + l_sharp:
     f.write(major_string)
     f.close()
 
-    cmd = 'lilypond -o {:s} {:s}'.format(folder+major_key+'-major', major_file_name)
+    cmd = 'lilypond -o {:s} {:s}'.format(tmp_folder+major_key+'-major', major_file_name)
     s = subprocess.run(cmd, shell=True)
 
     # f = open(minor_file_name, 'w')
@@ -109,7 +129,15 @@ print("Done writing lilypond files.")
 # back: note, sharp/flat, major/minor
 # note, sharp, flat, major/minor
 # pdf
-latex_template_string = '\card{{ \
+if FLIP_UP:
+    latex_template_string = '\\card{{ \
+\\includegraphics[width=.25\\linewidth]{{{:s}}}}}{{ \
+\\Large \\bf {:s} {:s} {:s} / \
+{:s} {:s} {:s} \\\\ \
+\\rotatebox[origin=c]{{180}}{{ \\includegraphics[width=.25\linewidth]{{{:s}}} }} \
+}} \n'
+else:
+    latex_template_string = '\\card{{ \
 \\includegraphics[width=.25\\linewidth]{{{:s}}}}}{{ \
 \\Large \\bf {:s} {:s} {:s} / \
 {:s} {:s} {:s} \\\\ \
@@ -154,8 +182,8 @@ f = open(latex_output, 'w')
 f.write(output_string)
 f.close()
 
-os.chdir('output/') # lilypond CLI seems to be broken.
+os.chdir(tmp_folder) # lilypond CLI seems to be broken.
 os.system('pdflatex flashcards.tex')
-os.system('cp flashcards.pdf ..')
+os.system('cp flashcards.pdf ../' + pdf_output)
 os.chdir('..') 
-print("\n\nOutput file is 'flashcard.pdf'. \nNow safe to delete 'output' folder.")
+print("\n\nOutput file is {:s}. \nNow safe to delete {:s} folder.".format(pdf_output, tmp_folder))

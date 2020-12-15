@@ -18,7 +18,7 @@
   \fill-line { % For centering 
     \score {
       {
-        \clef bass
+        \clef <CLEF_PLACEHOLDER>
         \key <KEY_PLACEHOLDER>
         \repeat unfold 1 { s1 * <WIDTH_PLACEHOLDER> \break }
         % bes'

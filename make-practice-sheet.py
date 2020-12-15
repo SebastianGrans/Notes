@@ -3,15 +3,13 @@ import os
 import subprocess
 
 import numpy as np
-
 myrng = np.random.default_rng()
 
 lilypond_template = 'templates/practice-sheet-template.ly'
+tmp_folder = 'tmp_output/'
 
-folder = 'output/'
-
-if not os.path.exists('output'):
-    os.mkdir('output')
+if not os.path.exists(tmp_folder):
+    os.mkdir(tmp_folder)
 
 treble_set = ['a', 'b', \
             'c\'', 'd\'', 'e\'', 'f\'', 'g\'', 'a\'', 'b\'', \
@@ -37,7 +35,7 @@ bass_set_str = ['C2', 'D2', 'E2', 'F2', 'G2', 'A2', 'B2', \
 def to_ly_string(s):
     '''
         Converts a note, e.g. 'c4' to:
-        \markup{C \hspace #-0.5 \sub{4}}
+        \\markup{C \\hspace #-0.5 \\sub{4}}
     '''
     template = '\\markup{{{:1s} \\hspace #-0.5 \\sub{{{:1s}}} }}' 
     return template.format(s[0], s[1])
@@ -56,8 +54,6 @@ f = open(lilypond_template, 'r')
 ly_template_string = f.read()
 f.close()
 
-output_ly = None
-
 # Inside the template, we replace the placeholder string with the new one
 output_string = ly_template_string.replace('<TREBLE_NOTES>', ' '.join(treble_notes))
 output_string = output_string.replace('<TREBLE_NOTES_STR>', ' '.join(treble_notes_str))
@@ -65,7 +61,7 @@ output_string = output_string.replace('<BASS_NOTES>', ' '.join(bass_notes))
 output_string = output_string.replace('<BASS_NOTES_STR>', ' '.join(bass_notes_str))
 
 # Write to file.
-file_name = folder + 'practice-sheet.ly'
+file_name = tmp_folder + 'practice-sheet.ly'
 f = open(file_name, 'w')
 f.write(output_string)
 f.close()
@@ -76,4 +72,4 @@ s = subprocess.run(cmd, shell=True)
 os.system('cp practice-sheet.pdf ..')
 os.chdir('..')
 
-print("\n\nOutput file is " + file_name + "\nNow safe to delete 'output' folder.")
+print("\n\nOutput file is " + file_name + "\nNow safe to delete 'tmp_output' folder.")
