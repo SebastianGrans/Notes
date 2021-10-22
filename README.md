@@ -16,7 +16,7 @@ Front- and back-side of one flashcard.
 [Bass Clef/F-Clef key signature flashcards](pdf/../pdfs/key-signature-bass.pdf)
 
 ## Make your own?
-Read the section below and have a look into `make-note-sheet.py`, `make-time-signature-sheet.py`.
+Read the section below and have a look into `make-note-sheet.py`, `make-key-signature-sheet.py`.
 You will need to have Python, LaTeX, and Lilypond installed. 
 
 ## How does it work?

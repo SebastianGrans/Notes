@@ -14,7 +14,7 @@ FLIP_UP = True
 # or if you wanna play :) 
 
 latex_template    = 'templates/flashcards-template.tex'
-lilypond_template = 'templates/time-signature-template.ly'
+lilypond_template = 'templates/key-signature-template.ly'
 
 tmp_folder = 'tmp_output/'
 lilypond_output = tmp_folder + '{}.ly'
