@@ -66,7 +66,7 @@ f = open(file_name, 'w')
 f.write(output_string)
 f.close()
 
-os.chdir('output/') # lilypond CLI seems to be broken.
+os.chdir(tmp_folder) # lilypond CLI seems to be broken.
 cmd = 'lilypond practice-sheet.ly'
 s = subprocess.run(cmd, shell=True)
 os.system('cp practice-sheet.pdf ..')

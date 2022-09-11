@@ -1,19 +1,60 @@
-# Lilypond flash cards with LaTeX
+# Notes
+
+## Notes flash cards
+
+Need to learn the notes and want physical flash cards? I've got you covered!
+I've made a PDF that you can simply print
 
 <img src="images/out.png" style="width: 400px"> 
 
 Front- and back-side of one flashcard. 
 
-## Precompiled files
+These notes were generated using Lilypond and then structured on a A4 paper with LaTeX.
+### Precompiled files
 
 [Treble Clef/G-Clef notes flashcards](pdfs/flashcards-treble.pdf)  
 [Bass Clef/F-Clef notes flashcards](pdfs/flashcards-bass.pdf)
 
-[Note practice sheets](pdfs/flashcards-treble.pdf)  
-**Note:** You can generate new ones with random notes by running `python make-practice-sheet.py`.
+## Note practice sheets
+
+I've also made entire sheets containing either the note name, or the note
+itself. And the task is then to draw the note, or to fill in the name. The last
+page is an answer sheet.
+
+<img src="images/practice.png" style="width: 400px">   
+
+### Precompiled file
+
+[Note practice sheets](pdfs/practice-sheet.pdf)  
+
+### Generating a new random sheet
+
+```bash
+python make-practice-sheet.py
+```
+
+## Key signature flash cards 
+
+Same as with the notes, but with the key signatures! 
+
+<img src="images/key-sign.png" style="width: 400px">  
+
+Front- and back-side of one key signature flashcard. 
+
+### Precompiled files
 
 [Treble Clef/G-Clef key signature flashcards](pdfs/key-signature-treble.pdf)  
 [Bass Clef/F-Clef key signature flashcards](pdf/../pdfs/key-signature-bass.pdf)
+
+
+
+## G and F clef cheat sheet
+
+I wasn't happy with any of the bass and treble clef cheat sheets I could find.So I made my own!
+
+<img src="images/bass-and-treble-clef.png" style="width: 400px">  
+
+Download the pdf [here](pdfs/bass-and-treble-clef.pdf).
 
 ## Make your own?
 Read the section below and have a look into `make-note-sheet.py`, `make-key-signature-sheet.py`.
@@ -45,21 +86,6 @@ So for each PDF we generated, we insert a statement like this:
     \includegraphics[width=.20\\linewidth]{a-ans.pdf}
 }
 ```
-
-
-## Example 
-Here are some images taken from the pre-compiled sheets.
-
-
-<img src="images/key-sign.png" style="width: 400px">  
-
-Front- and back-side of one key signature flashcard. 
-
-
-<img src="images/practice.png" style="width: 400px">   
-
-Image from three paged practice sheets.
-
 
 
 ## For future reference
